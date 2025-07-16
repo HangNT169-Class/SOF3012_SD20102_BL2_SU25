@@ -1,5 +1,6 @@
 package com.example.sof3012_sd20102_bl2_su25.B2_Hibernate.servlet;
 
+import com.example.sof3012_sd20102_bl2_su25.B2_Hibernate.entity.Category1;
 import com.example.sof3012_sd20102_bl2_su25.B2_Hibernate.service.CategoryService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 // Value => Duong danh web
 @WebServlet(value = {
@@ -93,6 +95,15 @@ public class CategoryServlet extends HttpServlet {
     private void searchCate(HttpServletRequest request, HttpServletResponse response) {
     }
 
-    private void hienThiDuLieu(HttpServletRequest request, HttpServletResponse response) {
+    private void hienThiDuLieu(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // B1: Goi ham getAll => service
+        List<Category1>listCate = cateService.getAll();
+        // B2: Day du lieu tu servlet => jsp: setAttribute(ts1, ts2)
+        // ts1: ten minh dat => jsp dung
+        // ts2: gia tri cua bien
+//        int a = 5;
+        request.setAttribute("test",listCate);
+        //B3:Chuyen trang : getRequestDispatcher
+        request.getRequestDispatcher("/buoi3/categorys.jsp").forward(request,response);
     }
 }
