@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
@@ -10,7 +11,7 @@
     </form>
     <br />
     <button><a href="">Add Cate</a></button>
-    <table>
+    <table border="1">
       <thead>
         <tr>
           <th>STT</th>
@@ -19,7 +20,18 @@
           <th colspan="2">Action</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+<%--      for(Doi tuong : lists) : var : doi tuong, items: dai dien cho list
+Doi vs bien duoc truyen tu servlet sang : ${ten bien}
+--%>
+      <c:forEach var="cate" items="${test}">
+        <tr>
+          <td></td>
+          <td>${cate.categoryCode}</td>
+          <td>${cate.categoryName}</td>
+        </tr>
+      </c:forEach>
+      </tbody>
     </table>
   </body>
 </html>
