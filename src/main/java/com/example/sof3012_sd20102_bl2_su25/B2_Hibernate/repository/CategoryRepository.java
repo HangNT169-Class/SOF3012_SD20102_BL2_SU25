@@ -137,13 +137,15 @@ public class CategoryRepository {
 
     public List<Category1>phanTrangC2Hql(int pageNo, int pageSize){
         Query q = s.createQuery("FROM Category1 ");
-        q.setFirstResult(pageNo * pageSize);
+        q.setFirstResult((pageNo-1) * pageSize);
         q.setMaxResults(pageSize);
         return q.getResultList();
     }
 
     public static void main(String[] args) {
-        System.out.println(new CategoryRepository().getOne2(1L));
+        // pageNo = 0
+        System.out.println(new CategoryRepository().phanTrangC2Hql(1,5));
+//        System.out.println(new CategoryRepository().getOne2(1L));
        // System.out.println(new CategoryRepository().searchById(3L,10003L));
 //        System.out.println(new CategoryRepository().searchByName("fdsaf"));
 //        System.out.println(new CategoryRepository().getAll());
