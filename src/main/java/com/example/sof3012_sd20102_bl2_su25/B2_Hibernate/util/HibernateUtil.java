@@ -1,6 +1,7 @@
 package com.example.sof3012_sd20102_bl2_su25.B2_Hibernate.util;
 
 import com.example.sof3012_sd20102_bl2_su25.B2_Hibernate.entity.Category1;
+import com.example.sof3012_sd20102_bl2_su25.B2_Hibernate.entity.Product;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -26,6 +27,7 @@ private static final SessionFactory FACTORY;
 
         conf.setProperties(properties);
         conf.addAnnotatedClass(Category1.class); //  Category1 is not mapped [FROM Category1 ]
+        conf.addAnnotatedClass(Product.class);
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
         FACTORY = conf.buildSessionFactory(registry);

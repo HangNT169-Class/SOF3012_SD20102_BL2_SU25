@@ -27,6 +27,7 @@ Doi vs bien duoc truyen tu servlet sang : ${ten bien}
       <c:forEach var="cate" items="${test}">
         <tr>
           <td></td>
+          <%-- Ten thuoc tinh => y si trong entity --%>
           <td>${cate.categoryCode}</td>
           <td>${cate.categoryName}</td>
         </tr>
