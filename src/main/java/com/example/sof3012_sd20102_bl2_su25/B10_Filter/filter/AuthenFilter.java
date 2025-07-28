@@ -23,7 +23,7 @@ import java.io.IOException;
 //        "/category/view-add", // GET
 //        "/category/search", // GET
 //        "/category/delete", // GET
-        "/cagegory/*"
+        "/category/*"
 })
 public class AuthenFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
