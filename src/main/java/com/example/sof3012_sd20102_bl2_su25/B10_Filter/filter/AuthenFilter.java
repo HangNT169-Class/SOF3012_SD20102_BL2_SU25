@@ -23,7 +23,8 @@ import java.io.IOException;
 //        "/category/view-add", // GET
 //        "/category/search", // GET
 //        "/category/delete", // GET
-        "/category/*"
+        "/category/*",
+        "/ProductServlet"
 })
 public class AuthenFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
@@ -49,8 +50,28 @@ public class AuthenFilter implements Filter {
             if (username.equalsIgnoreCase("HangNT169") ||
                     username.equalsIgnoreCase("NguyenVV4")
             ) {
+                // neu la role Admin => truy cap tat ca cac duong dan
+                // Neu la role nhan vien => chi truy cap vao cac duong danh cua category
+                // con cac duong dan khac k truy cap => 403
                 // tk dung > quay ve trang category
-                chain.doFilter(request, response);
+//                chain.doFilter(request, response);
+                String role = (String) session.getAttribute("role1");
+                if(role.equalsIgnoreCase("Admin")){
+                    chain.doFilter(request, response);
+                }else {
+                    // Check uri
+                    String uri = req.getRequestURI();
+                    if(uri.contains("/category/")){
+                        // duoc phep truy cap
+                        chain.doFilter(request, response);
+                    }
+                    // De bao co bn duong dan duoc truy cap cua role Nhan vien
+                    // thi bang day else o giua
+                    else{
+                        // loi 403
+                        res.sendRedirect("/buoi10/403-page.jsp");
+                    }
+                }
             }else{
                 res.sendRedirect("/login");
             }

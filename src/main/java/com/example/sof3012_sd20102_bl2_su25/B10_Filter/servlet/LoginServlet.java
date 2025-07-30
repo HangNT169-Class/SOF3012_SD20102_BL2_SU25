@@ -29,7 +29,17 @@ public class LoginServlet extends HttpServlet {
                 (username.equalsIgnoreCase("HangNT169") && pass.equals("123456"))
                         || (username.equalsIgnoreCase("NguyenVV4") && pass.equals("1234567"))
         ){
-            // truy cap vao trang web "/category/hien-thi
+//            // truy cap vao trang web "/category/hien-thi
+//            response.sendRedirect("/category/hien-thi");
+            // them role => author
+            // Admin => Hang
+            // Nhan vien => Nguyen
+            if(username.equalsIgnoreCase("HangNT169")){
+                session.setAttribute("role1","Admin");
+            }else{
+                session.setAttribute("role1","NhanVien");
+            }
+
             response.sendRedirect("/category/hien-thi");
         }else{
             // loi
